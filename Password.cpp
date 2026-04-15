@@ -1,5 +1,6 @@
 #include "Password.h"
 #include <string>
+#include <unordered_map>
 
 using std::string;
 
@@ -26,3 +27,18 @@ int Password::count_leading_characters(string phrase){
 bool Password::has_mixed_case(string pass){
   return false;
 }
+
+  /* Receives a string and returns a count of how many case-sensitive unique
+   * characters there are. If there are duplicate instances of the same character 
+   * it should only count as a single character. Even if characters look similar, 
+   * as long as they have distinct ASCII values, they should qualify as unique characters. */
+unsigned int Password::unique_characters(string) {
+  std::unordered_map<char c, unsigned int count> letter_count; // count will be ignored. We are using the map size as the count.
+  for (char c : str) {
+      if(!letter_count.find(c)) {
+        letter_count.insert(c);
+      }
+  }
+  return (unsigned int)letter_count.size()
+}
+
